@@ -1,0 +1,138 @@
+# -------------------------------------------------------------------------BLL------------------------------------------
+class CMS:
+    index=0 # this will create a static variable and will be used to generate ID automatically
+    cuslist=[] #this will create a list and will be static
+    def __init__(self): # this is constructor and will create 3 instance variable
+        self.id=0
+        self.age=0
+        self.mob=0
+        self.name=""
+
+    def addCustomer(self): #this is method for adding new customer in the system
+        CMS.cuslist.append(self) # this will append all the detail to list
+        return
+    def remove(self): # this will be used to remove a particular customer from the list
+        for i in range (len(CMS.cuslist)):
+            if (CMS.cuslist[i].id==cus.id):
+                CMS.cuslist.pop(i)
+                print("Customer Removed Successfully")
+                return
+    def search(self): # this method can be used to search the customer from the list
+        for cus in CMS.cuslist:
+            if(cus.id==self.id):
+                self.name=cus.name
+                self.age=cus.age
+
+    def update(self): # this method can be used to update the existing detail of the customer
+        for cus in CMS.cuslist:
+            if(cus.id==self.id):
+                cus.name=input("Enter New Name: ")
+                cus.age=input("Enter New age: ")
+                while(1):
+                    cus.mob=input("Enter New Mobile Number: ")
+                    if(cus.mob.isnumeric()):
+                        cus.mob=int(cus.mob)
+                        if(cus.mob >= 1111111111):
+                            break
+                        else:
+                            print("Please Enter A valid Mobile Number")
+                    else:
+                        print("Please Enter A valid Mobile Number")
+                print("Name:",cus.name,"Age:",cus.age,"Mobile Number:",cus.mob,"Customer ID:",cus.id)
+                print("Customer Details has been updated successfully")
+def ack():
+    print("Customer Details: ")
+    print("Name of Customer: ",cus.name, "  Age :",cus.age, "  Customer ID: ",cus.id)
+
+
+# noinspection PyStringFormat
+def displayall(): # this Function is created to display all the existing detail in the customer list of the project
+    for cus in CMS.cuslist:
+        print("Customer ID:%d Customer Age:%d, Customer Name:%s"%(cus.id,cus.age,cus.name))
+#---------------------------------------------END OF BUSINESS LOGIC LAYER--------------------------------------------------------------------------------------------
+#---------------------------------------------START OF PRESENTATION LOGIC LAYER--------------------------------------------------------------------------------------
+while (1):
+    print("Welcome to the Customer Management System")
+    print("Please select your choice from given below : ")
+    print("1.Add Customer","2.Update Customer","3.Remove Customer","4.Search Customer","5.Display All","6.Exit",sep="\n")
+    while(1):
+        x = (input("Please Enter your Choice here : "))
+        if(x.isnumeric()):
+            x=int(x)
+            break
+        else:
+            print("Please enter a valid choice")
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------ADD CUSTOMER-----------------------------------------------------------------------------------------------------------
+    if(x==1):
+        CMS.index+=1
+        cus=CMS()
+        cus.id=CMS.index
+        while(1):
+            cus.name=input("Enter your Name: ")
+            if (cus.name.isidentifier()):
+                break
+            else:
+                print("Please Enter Valid Name")
+        while(1):
+            cus.age=(input("Enter your Age: "))
+            if(cus.age.isnumeric()):
+                cus.age=int(cus.age)
+                break
+            else:
+                print("You Have Entered Incorrect Age Format","Please enter a valid age",sep="\n")
+        while(1):
+            cus.mob=input("Enter your Mobile Number: ")
+            if(cus.mob.isnumeric()):
+                cus.mob=int(cus.mob)
+                if(cus.mob >= 1111111111):
+                    break
+                else:
+                    print("Please enter a valid Mobile Number")
+            else:
+                print("Please enter a valid Mobile Number")
+        cus.addCustomer()
+        ack()
+        print("Customer Added Sucessfully")
+#---------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------Update Customer------------------------------------------------------
+    if(x==2):
+        cus=CMS()
+        while(1):
+            cus.id=(input("Enter Customer ID: "))
+            if(cus.id.isnumeric()):
+                cus.id=int(cus.id)
+                break
+            else:
+                print("Please Enter a valid Customer ID")
+        cus.update()
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------Remove Customer----------------------------------------------------------------------------------
+    if(x==3):
+        cus=CMS()
+        while(1):
+            cus.id=(input("Enter Customer ID: "))
+            if(cus.id.isnumeric()):
+                cus.id=int(cus.id)
+                break
+            else:
+                print("Please Enter a Valid Customer ID")
+        cus.remove()
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------Search Customer--------------------------------------------------------------------------------------------
+    if (x == 4):
+        cus = CMS()
+        while(1):
+            cus.id = (input("Enter Customer ID :"))
+            if(cus.id.isnumeric()):
+                cus.id=int(cus.id)
+                break
+            else:
+                print("Please Enter a Valid Customer ID")
+        cus.search()
+        print("Name of Customer: ", cus.name, "Age :", cus.age, "Customer ID: ", cus.id)
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------Display All Customer----------------------------------------------------------------------------------
+    if(x==5):
+        displayall()
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------
