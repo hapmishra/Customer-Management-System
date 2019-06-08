@@ -1,0 +1,117 @@
+namelist=[]
+agelist=[]
+moblist=[]
+idlist=[]
+index=0
+# ----------------------------------(add function)----------------------------------------------------------------------
+def addCustomer(name,age,mob):
+    namelist.append(name)
+    agelist.append(age)
+    moblist.append(mob)
+    idlist.append(index)
+    return
+# ----------------------------------------------------------------------------------------------------------------------
+# -------------------------------------(Update Function)----------------------------------------------------------------
+def update(id,name,age,mob):
+    namelist[id]=name
+    agelist[id]=age
+    moblist[id]=mob
+# ----------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------(Remove Function)-----------------------------------------------------------
+def remove(id):
+    namelist.pop(id)
+    agelist.pop(id)
+    moblist.pop(id)
+    print("Customer Removed Sucessfully")
+# ---------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------(Display All Function)------------------------------------------------------
+def display():
+    for i in range(len(idlist)):
+        print("Name :",namelist[i],"  ","Age :",agelist[i],"  ","Mobile NO. :",moblist[i],"  ","ID :",idlist[i])
+    return
+# -------------------------------------------(Search Function)---------------------------------------------------------
+def search(id):
+    index = idlist.index(id)
+    name = namelist[index]
+    age = agelist[index]
+    mob = moblist[index]
+    print("Name :", name,"  ","Age :", age,"  ","Mobile No. :", mob, sep="\n")
+    return
+# ---------------------------------------------(End of BL)-------------------------------------------------------------
+# -------------------------------------------(start of pl)--------------------------------------------------------------
+while(1):
+    print("Welcome to the Customer Management System")
+    print("Please select your choice from given below : ")
+    print("1.Add Customer","2.Update Customer","3.Remove Customer","4.Search Customer","5.Display All","6.Exit",sep="\n")
+    x=int(input("Please Enter your Choice here : "))
+# -------------------------------------------(adcustomer)---------------------------------------------------------------
+    if(x==1):
+        index+=1
+        print("Enter the Details of the Customer")
+        name=input("Enter the Name of the Customer : ")
+        while(1):
+            age=input("Enter the Age of the Customer : ")
+            if(age.isnumeric()):
+                break
+            else:
+                print("Please Enter Age only in Numeric Form")
+        while(1):
+            mob=input("Please Enter your 10 Digit Mobile Number : ")
+            if(mob.isnumeric()):
+                break
+            else:
+                print("Please enter a valid mobile number")
+        addCustomer(name,age,mob)
+    print(namelist,agelist,idlist,moblist,sep='\n')
+# ----------------------(update Customer)------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+    if (x == 2):
+        while (1):
+            id = input("Enter Customer ID :")
+            if (id.isnumeric()):
+                id = int(id)
+                id+=1
+                name = input("Enter the Name : ")
+                while (1):
+                    age = input("Enter the Age of Customer")
+                    if (age.isnumeric()):
+                        break
+                    else:
+                        print("Please enter valid age")
+                while (1):
+                    mob = input("Enter Mobile Number : ")
+                    if (mob.isnumeric()):
+                        break
+                    else:
+                        print("Please enter valid mobile number")
+                break
+        update(id,name,age,mob)
+# ----------------------------------------------------------------------------------------------------------------------
+# -----------------------------------(Remove Customer)------------------------------------------------------------------
+    if(x==3):
+        while (1):
+            id = input("Enter Customer ID :")
+            if (id.isnumeric()):
+                id=int(id)
+                id-=1
+                break
+            else:
+                print("Please Enter Valid Customer ID")
+        remove(id)
+# ----------------------------------------------------------------------------------------------------------------------
+# ------------------------------------(Search Customer)-----------------------------------------------------------------
+    elif (x==4):
+        while (1):
+            id = input("Enter Customer ID :")
+            if (id.isnumeric()):
+                id=int(id)
+                break
+            else:
+                print("The Please enter a valid ID")
+        search(id)
+# ----------------------------------------------------------------------------------------------------------------------
+# -------------------------------------(Display All)--------------------------------------------------------------------
+    elif(x==5):
+        display()
+# ----------------------------------------------------------------------------------------------------------------------
+# ------------------------------------(End of PL)-----------------------------------------------------------------------
